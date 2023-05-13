@@ -44,21 +44,43 @@ const quotes = [
     source: 'Bhagvad Gita'
   }
 ];
-
+// console.log(quotes);
 
 /***
  * `getRandomQuote` function
 ***/
-function getRandomQuote() {
-
-
+function getRandomQuote(arr) {
+   // 1. Create a variable that generates a random number
+  // between zero and the last index in the `quotes` array
+  const randomIndex = Math.floor(Math.random() * quotes.length);
+  // 2. Use the random number variable and bracket notation 
+  // to grab a random object from the `quotes` array, and 
+  // store it in a variable
+  const randomQuote = quotes[randomIndex];
+  // 3. Return the variable storing the random quote object
+  return randomQuote;
 }
+getRandomQuote();
 
 
 /***
  * `printQuote` function
 ***/
 function printQuote() {
+  const randomQuote = getRandomQuote();
+  let htmlString = `<p class="quote">${randomQuote.quote}</p>
+  <p class="source">${randomQuote.source}`;
+if (randomQuote.citation) {
+  htmlString += `<span class="citation">${randomQuote.citation}</span>`;
+}
+
+if (randomQuote.year) {
+  htmlString += `<span class="year">${randomQuote.year}</span>`;
+}
+
+htmlString += "</p>";
+
+document.getElementById('quote-box').innerHTML = htmlString;
 
 
 }
